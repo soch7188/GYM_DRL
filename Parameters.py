@@ -10,9 +10,9 @@ Final_epsilon = 0.01
 
 Num_action = 2
 
-Num_replay_memory = 200
-Num_start_training = 2000
-Num_training = 8000
+Num_replay_memory = 250
+Num_start_training = 2500
+Num_training = 25000
 Num_test = 200
 
 Num_plot_episode = 20
