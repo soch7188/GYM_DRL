@@ -13,6 +13,11 @@ import copy
 import matplotlib.pyplot as plt 
 import datetime 
 import gym
+import Parameters as params
+import time
+
+start_time = time.time()
+
 
 env = gym.make('CartPole-v0')
 game_name = 'CartPole'
@@ -24,14 +29,14 @@ Gamma = 0.99
 Learning_rate_actor  = 0.0001 
 Learning_rate_critic = 0.0005
 
-Num_replay_memory = 10000
-Num_start_training = 5000
-Num_training = 20000
-Num_testing  = 10000 
+Num_replay_memory = params.Num_replay_memory
+Num_start_training = params.Num_start_training
+Num_training = params.Num_training
+Num_testing  = params.Num_test
+Num_episode_plot = params.Num_plot_episode
 
 Num_update = 200
 Num_batch = 32
-Num_episode_plot = 30
 
 first_fc  = [4, 256]
 second_fc = [256, 128]
@@ -130,7 +135,7 @@ Replay_memory = []
 
 while True:
 	# Rendering
-	env.render()
+	# env.render()
 	
 	# Making replay memory	
 	if step <= Num_start_training:
@@ -254,4 +259,5 @@ while True:
 		score = 0
 		
 		state = env.reset()
+print("--- %s seconds ---" % (time.time() - start_time))
 

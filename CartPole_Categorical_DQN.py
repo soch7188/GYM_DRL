@@ -11,6 +11,10 @@ import matplotlib.pyplot as plt
 import datetime
 import time
 import gym
+import time
+import Parameters as params
+
+start_time = time.time()
 
 env = gym.make('CartPole-v0')
 game_name = 'CartPole'
@@ -19,17 +23,17 @@ algorithm = 'Categorical_DQN'
 # Parameter setting
 Num_action = 2
 Gamma = 0.99
-Learning_rate = 0.001
-Epsilon = 1
-Final_epsilon = 0.1
+Learning_rate = params.Learning_rate
+Epsilon = params.Epsilon
+Final_epsilon = params.Final_epsilon
 
-Num_replay_memory = 10000
-Num_start_training = 5000
-Num_training = 15000
-Num_testing  = 10000
+Num_replay_memory = params.Num_replay_memory
+Num_start_training = params.Num_start_training
+Num_training = params.Num_training
+Num_testing  = params.Num_test
+Num_episode_plot = params.Num_plot_episode
 Num_update = 150
 Num_batch = 32
-Num_episode_plot = 20
 
 # Categorical Parameters
 Num_atom = 51
@@ -173,10 +177,13 @@ plot_y = []
 # f, (ax1, ax2, ax3, ax4, ax5, ax6) = plt.subplots(3,2, sharex=False)
 f, ax = plt.subplots(3,2, sharex=False)
 
+
+
 # Making replay memory
 while True:
     # Rendering
-    env.render()
+    # env.render()
+
 
     if step <= Num_start_training:
         state = 'Observing'
@@ -194,15 +201,15 @@ while True:
 
         # if random value(0 - 1) is smaller than Epsilon, action is random. Otherwise, action is the one which has the largest Q value
         if random.random() < Epsilon:
-        	action = np.zeros([Num_action])
-        	action[random.randint(0, Num_action - 1)] = 1.0
-        	action_step = np.argmax(action)
+            action = np.zeros([Num_action])
+            action[random.randint(0, Num_action - 1)] = 1.0
+            action_step = np.argmax(action)
 
         else:
-        	Q_value = Q_action.eval(feed_dict = {x: [observation]})
-        	action = np.zeros([Num_action])
-        	action[np.argmax(Q_value)] = 1
-        	action_step = np.argmax(action)
+            Q_value = Q_action.eval(feed_dict = {x: [observation]})
+            action = np.zeros([Num_action])
+            action[np.argmax(Q_value)] = 1
+            action_step = np.argmax(action)
 
         observation_next, reward, terminal, info = env.step(action_step)
         reward -= 5 * abs(observation_next[0])
@@ -271,8 +278,8 @@ while True:
         action_binary = np.zeros([Num_batch, Num_action * Num_atom])
 
         for i in range(len(action_batch)):
-        	action_batch_max = np.argmax(action_batch[i])
-        	action_binary[i, Num_atom * action_batch_max : Num_atom * (action_batch_max + 1)] = 1
+            action_batch_max = np.argmax(action_batch[i])
+            action_binary[i, Num_atom * action_batch_max : Num_atom * (action_batch_max + 1)] = 1
 
         _, loss, p_log, p_test = sess.run([train_step, Loss, p_loss_log, p_loss],
                                   feed_dict = {x:observation_batch, m_loss: m_batch, action_binary_loss: action_binary})
@@ -282,26 +289,27 @@ while True:
 
         # Reduce epsilon at training mode
         if Epsilon > Final_epsilon:
-        	Epsilon -= 1.0/Num_training
+            Epsilon -= 1.0/Num_training
 
     elif step < Num_start_training + Num_training + Num_testing:
-    	# Testing
-    	state = 'Testing'
 
-    	Q_value = Q_action.eval(feed_dict = {x: [observation]})
-    	action = np.zeros([Num_action])
-    	action[np.argmax(Q_value)] = 1
-    	action_step = np.argmax(action)
+        # Testing
+        state = 'Testing'
 
-    	observation_next, reward, terminal, info = env.step(action_step)
+        Q_value = Q_action.eval(feed_dict = {x: [observation]})
+        action = np.zeros([Num_action])
+        action[np.argmax(Q_value)] = 1
+        action_step = np.argmax(action)
 
-    	Epsilon = 0
+        observation_next, reward, terminal, info = env.step(action_step)
+
+        Epsilon = 0
 
     else:
-    	# Test is finished
-    	print('Test is finished!!')
-    	plt.savefig('./Plot/' + data_time + '_' + algorithm + '_' + game_name + '.png')
-    	break
+        # Test is finished
+        print('Test is finished!!')
+        plt.savefig('./Plot/' + data_time + '_' + algorithm + '_' + game_name + '.png')
+        break
 
     # Update parameters at every iteration
     step += 1
@@ -311,7 +319,7 @@ while True:
     Replay_memory.append([observation, action, reward, observation_next, terminal])
 
     if len(Replay_memory) > Num_replay_memory:
-    	del Replay_memory[0]
+        del Replay_memory[0]
 
     observation = observation_next
 
@@ -382,3 +390,4 @@ while True:
         episode += 1
 
         observation = env.reset()
+print("--- %s seconds ---" % (time.time() - start_time))

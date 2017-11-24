@@ -11,6 +11,10 @@ import matplotlib.pyplot as plt
 import datetime
 import time
 import gym
+import Parameters as params
+
+start_time = time.time()
+
 
 env = gym.make('CartPole-v0')
 game_name = 'CartPole'
@@ -19,17 +23,17 @@ algorithm = 'DQN'
 # Parameter setting
 Num_action = 2
 Gamma = 0.99
-Learning_rate = 0.00025
-Epsilon = 1
-Final_epsilon = 0.01
+Learning_rate = params.Learning_rate
+Epsilon = params.Epsilon
+Final_epsilon = params.Final_epsilon
 
-Num_replay_memory = 10000
-Num_start_training = 5000
-Num_training = 15000
-Num_testing  = 10000
+Num_replay_memory = params.Num_replay_memory
+Num_start_training = params.Num_start_training
+Num_training = params.Num_training
+Num_testing  = params.Num_test
+Num_episode_plot = params.Num_plot_episode
 Num_update = 150
 Num_batch = 32
-Num_episode_plot = 20
 
 first_fc  = [4, 512]
 second_fc = [512, 128]
@@ -142,7 +146,7 @@ f, (ax1, ax2, ax3) = plt.subplots(3, sharex=True)
 # Making replay memory
 while True:
     # Rendering
-    env.render()
+    # env.render()
 
     if step <= Num_start_training:
     	state = 'Observing'
@@ -286,3 +290,4 @@ while True:
         episode += 1
 
         observation = env.reset()
+print("--- %s seconds ---" % (time.time() - start_time))
