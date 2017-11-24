@@ -308,7 +308,7 @@ while True:
     else:
         # Test is finished
         print('Test is finished!!')
-        plt.savefig('./Plot/' + data_time + '_' + algorithm + '_' + game_name + '.png')
+        # plt.savefig('./Plot/' + data_time + '_' + algorithm + '_' + game_name + '.png')
         break
 
     # Update parameters at every iteration

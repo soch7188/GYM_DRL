@@ -187,7 +187,7 @@ while True:
 	else: 
 		# Training is finished
 		print('Training is finished!!')
-		plt.savefig('./Plot/' + data_time + '_' + algorithm + '_' + game_name + '.png')	
+		# plt.savefig('./Plot/' + data_time + '_' + algorithm + '_' + game_name + '.png')
 		break
 
 	# Update parameters at every iteration	
