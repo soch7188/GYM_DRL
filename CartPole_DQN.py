@@ -138,10 +138,10 @@ observation, reward, terminal, info = env.step(action)
 
 # Figure and figure data setting
 # plt.figure(1)
-plot_x = []
-plot_y = []
-
-f, (ax1, ax2, ax3) = plt.subplots(3, sharex=True)
+# plot_x = []
+# plot_y = []
+#
+# f, (ax1, ax2, ax3) = plt.subplots(3, sharex=True)
 
 # Making replay memory
 while True:

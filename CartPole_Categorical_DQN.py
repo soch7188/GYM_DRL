@@ -171,11 +171,11 @@ observation, reward, terminal, info = env.step(action)
 
 # Figure and figure data setting
 # plt.figure(1)
-plot_x = []
-plot_y = []
-
-# f, (ax1, ax2, ax3, ax4, ax5, ax6) = plt.subplots(3,2, sharex=False)
-f, ax = plt.subplots(3,2, sharex=False)
+# plot_x = []
+# plot_y = []
+#
+# # f, (ax1, ax2, ax3, ax4, ax5, ax6) = plt.subplots(3,2, sharex=False)
+# f, ax = plt.subplots(3,2, sharex=False)
 
 
 

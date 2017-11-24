@@ -127,9 +127,9 @@ action = env.action_space.sample()
 state_next, reward, terminal, info = env.step(action)
 
 # Figure and figure data setting
-plt.figure(1)
-plot_x = []
-plot_y = []
+# plt.figure(1)
+# plot_x = []
+# plot_y = []
 
 Replay_memory = []
 
