@@ -324,65 +324,65 @@ while True:
     observation = observation_next
 
     # Plot average score
-    if len(plot_x) % Num_episode_plot == 0 and len(plot_x) != 0 and state != 'Observing':
-        ax[0,0].plot(np.average(plot_x), np.average(plot_y_loss), '*')
-        ax[0,0].set_title('Mean Loss')
-        ax[0,0].set_ylabel('Mean Loss')
-        ax[0,0].hold(True)
-
-        ax[1,0].plot(np.average(plot_x), np.average(plot_y),'*')
-        ax[1,0].set_title('Mean score')
-        ax[1,0].set_ylabel('Mean score')
-        ax[1,0].hold(True)
-
-        ax[2,0].plot(np.average(plot_x), np.average(plot_y_maxQ),'*')
-        ax[2,0].set_title('Mean Max Q')
-        ax[2,0].set_ylabel('Mean Max Q')
-        ax[2,0].set_xlabel('Episode')
-        ax[2,0].hold(True)
-
-        ax[0,1].clear()
-        ax[0,1].hold(True)
-        ax[0,1].plot(z_batch[0,:], p_test[0,:],'b')
-        ax[0,1].plot(z_batch[0,:], m_batch[0,:],'r')
-        ax[0,1].set_title('Distributions')
-        ax[0,1].set_ylabel('Distributions')
-        ax[0,1].set_xlabel('bins')
-
-        ax[1,1].clear()
-        ax[1,1].hold(True)
-        ax[1,1].plot(z_batch[0,:], p_test[1,:],'b')
-        ax[1,1].plot(z_batch[0,:], m_batch[1,:],'r')
-        ax[1,1].set_title('Distributions')
-        ax[1,1].set_ylabel('Distributions')
-        ax[1,1].set_xlabel('bins')
-
-        ax[2,1].clear()
-        ax[2,1].hold(True)
-        ax[2,1].plot(z_batch[0,:], p_test[2,:],'b')
-        ax[2,1].plot(z_batch[0,:], m_batch[2,:],'r')
-        ax[2,1].set_title('Distributions')
-        ax[2,1].set_ylabel('Distributions')
-        ax[2,1].set_xlabel('bins')
-
-        plt.draw()
-        plt.pause(0.000001)
-
-        plot_x = []
-        plot_y = []
-        plot_y_loss = []
-        plot_y_maxQ = []
+    # if len(plot_x) % Num_episode_plot == 0 and len(plot_x) != 0 and state != 'Observing':
+    #     ax[0,0].plot(np.average(plot_x), np.average(plot_y_loss), '*')
+    #     ax[0,0].set_title('Mean Loss')
+    #     ax[0,0].set_ylabel('Mean Loss')
+    #     ax[0,0].hold(True)
+    #
+    #     ax[1,0].plot(np.average(plot_x), np.average(plot_y),'*')
+    #     ax[1,0].set_title('Mean score')
+    #     ax[1,0].set_ylabel('Mean score')
+    #     ax[1,0].hold(True)
+    #
+    #     ax[2,0].plot(np.average(plot_x), np.average(plot_y_maxQ),'*')
+    #     ax[2,0].set_title('Mean Max Q')
+    #     ax[2,0].set_ylabel('Mean Max Q')
+    #     ax[2,0].set_xlabel('Episode')
+    #     ax[2,0].hold(True)
+    #
+    #     ax[0,1].clear()
+    #     ax[0,1].hold(True)
+    #     ax[0,1].plot(z_batch[0,:], p_test[0,:],'b')
+    #     ax[0,1].plot(z_batch[0,:], m_batch[0,:],'r')
+    #     ax[0,1].set_title('Distributions')
+    #     ax[0,1].set_ylabel('Distributions')
+    #     ax[0,1].set_xlabel('bins')
+    #
+    #     ax[1,1].clear()
+    #     ax[1,1].hold(True)
+    #     ax[1,1].plot(z_batch[0,:], p_test[1,:],'b')
+    #     ax[1,1].plot(z_batch[0,:], m_batch[1,:],'r')
+    #     ax[1,1].set_title('Distributions')
+    #     ax[1,1].set_ylabel('Distributions')
+    #     ax[1,1].set_xlabel('bins')
+    #
+    #     ax[2,1].clear()
+    #     ax[2,1].hold(True)
+    #     ax[2,1].plot(z_batch[0,:], p_test[2,:],'b')
+    #     ax[2,1].plot(z_batch[0,:], m_batch[2,:],'r')
+    #     ax[2,1].set_title('Distributions')
+    #     ax[2,1].set_ylabel('Distributions')
+    #     ax[2,1].set_xlabel('bins')
+    #
+    #     plt.draw()
+    #     plt.pause(0.000001)
+    #
+    #     plot_x = []
+    #     plot_y = []
+    #     plot_y_loss = []
+    #     plot_y_maxQ = []
 
     # Terminal
     if terminal == True:
         print('step: ' + str(step) + ' / '  + 'state: ' + state  + ' / '  + 'epsilon: ' + str(Epsilon) + ' / '  + 'score: ' + str(score))
 
-        if state != 'Observing':
-            # data for plotting
-            plot_x.append(episode)
-            plot_y.append(score)
-            plot_y_loss.append(np.mean(loss_list))
-            plot_y_maxQ.append(np.mean(maxQ_list))
+        # if state != 'Observing':
+        #     # data for plotting
+        #     plot_x.append(episode)
+        #     plot_y.append(score)
+        #     plot_y_loss.append(np.mean(loss_list))
+        #     plot_y_maxQ.append(np.mean(maxQ_list))
 
         score = 0
         loss_list = []

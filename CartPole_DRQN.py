@@ -259,18 +259,18 @@ while True:
 		del observation_set[0]
 
 	# Plot average score
-	if len(plot_x) % Num_episode_plot == 0 and len(plot_x) != 0 and state != 'Observing':
-		plt.xlabel('Episode')
-		plt.ylabel('Score')
-		plt.title('Cartpole_DRQN')
-		plt.grid(True)
-
-		plt.plot(np.average(plot_x), np.average(plot_y), hold = True, marker = '*', ms = 5)
-		plt.draw()
-		plt.pause(0.000001)
-
-		plot_x = []
-		plot_y = [] 
+	# if len(plot_x) % Num_episode_plot == 0 and len(plot_x) != 0 and state != 'Observing':
+	# 	plt.xlabel('Episode')
+	# 	plt.ylabel('Score')
+	# 	plt.title('Cartpole_DRQN')
+	# 	plt.grid(True)
+    #
+	# 	plt.plot(np.average(plot_x), np.average(plot_y), hold = True, marker = '*', ms = 5)
+	# 	plt.draw()
+	# 	plt.pause(0.000001)
+    #
+	# 	plot_x = []
+	# 	plot_y = []
 
 	# Terminal
 	if terminal == True:
@@ -281,8 +281,8 @@ while True:
 		episode_memory = []
 
 		# Plotting data
-		plot_x.append(episode)
-		plot_y.append(score)
+		# plot_x.append(episode)
+		# plot_y.append(score)
 
 		score = 0
 		episode += 1

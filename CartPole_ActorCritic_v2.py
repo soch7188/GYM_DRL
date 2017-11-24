@@ -233,28 +233,28 @@ while True:
 	state = state_next
 
 	# Plot average score
-	if len(plot_x) % Num_episode_plot == 0 and len(plot_x) != 0 and progress != 'Observing':
-		plt.xlabel('Episode')
-		plt.ylabel('Score')
-		plt.title('Cartpole' + algorithm)
-		plt.grid(True)
-
-		plt.plot(np.average(plot_x), np.average(plot_y), hold = True, marker = '*', ms = 5)
-		plt.draw()
-		plt.pause(0.000001)
-
-		plot_x = []
-		plot_y = [] 
+	# if len(plot_x) % Num_episode_plot == 0 and len(plot_x) != 0 and progress != 'Observing':
+	# 	plt.xlabel('Episode')
+	# 	plt.ylabel('Score')
+	# 	plt.title('Cartpole' + algorithm)
+	# 	plt.grid(True)
+    #
+	# 	plt.plot(np.average(plot_x), np.average(plot_y), hold = True, marker = '*', ms = 5)
+	# 	plt.draw()
+	# 	plt.pause(0.000001)
+    #
+	# 	plot_x = []
+	# 	plot_y = []
 
 	# Terminal
 	if terminal == True:
 		print('step: ' + str(step) + ' / '  + 'episode: ' + str(episode) + ' / '  + 'state: ' + progress  + ' / '  + 'score: ' + str(score)) 
 
-		if progress != 'Observing':
-			# data for plotting
-			plot_x.append(episode)
-			plot_y.append(score)
-			episode += 1
+		# if progress != 'Observing':
+		# 	# data for plotting
+		# 	plot_x.append(episode)
+		# 	plot_y.append(score)
+		# 	episode += 1
 		
 		score = 0
 		

@@ -247,42 +247,42 @@ while True:
     observation = observation_next
 
     # Plot average score
-    if len(plot_x) % Num_episode_plot == 0 and len(plot_x) != 0 and state != 'Observing':
-        ax1.plot(np.average(plot_x), np.average(plot_y_loss), '*')
-        ax1.set_title('Mean Loss')
-        ax1.set_ylabel('Mean Loss')
-        ax1.hold(True)
-
-        ax2.plot(np.average(plot_x), np.average(plot_y),'*')
-        ax2.set_title('Mean score')
-        ax2.set_ylabel('Mean score')
-        ax2.hold(True)
-
-        ax3.plot(np.average(plot_x), np.average(plot_y_maxQ),'*')
-        ax3.set_title('Mean Max Q')
-        ax3.set_ylabel('Mean Max Q')
-        ax3.set_xlabel('Episode')
-        ax3.hold(True)
-
-        plt.draw()
-        plt.pause(0.000001)
-
-        plot_x = []
-        plot_y = []
-        plot_y_loss = []
-        plot_y_maxQ = []
+    # if len(plot_x) % Num_episode_plot == 0 and len(plot_x) != 0 and state != 'Observing':
+    #     ax1.plot(np.average(plot_x), np.average(plot_y_loss), '*')
+    #     ax1.set_title('Mean Loss')
+    #     ax1.set_ylabel('Mean Loss')
+    #     ax1.hold(True)
+    #
+    #     ax2.plot(np.average(plot_x), np.average(plot_y),'*')
+    #     ax2.set_title('Mean score')
+    #     ax2.set_ylabel('Mean score')
+    #     ax2.hold(True)
+    #
+    #     ax3.plot(np.average(plot_x), np.average(plot_y_maxQ),'*')
+    #     ax3.set_title('Mean Max Q')
+    #     ax3.set_ylabel('Mean Max Q')
+    #     ax3.set_xlabel('Episode')
+    #     ax3.hold(True)
+    #
+    #     plt.draw()
+    #     plt.pause(0.000001)
+    #
+    #     plot_x = []
+    #     plot_y = []
+    #     plot_y_loss = []
+    #     plot_y_maxQ = []
 
 
     # Terminal
     if terminal == True:
         print('step: ' + str(step) + ' / '  + 'state: ' + state  + ' / '  + 'epsilon: ' + str(Epsilon) + ' / '  + 'score: ' + str(score))
-
-        if state != 'Observing':
-            # data for plotting
-            plot_x.append(episode)
-            plot_y.append(score)
-            plot_y_loss.append(np.mean(loss_list))
-            plot_y_maxQ.append(np.mean(maxQ_list))
+        #
+        # if state != 'Observing':
+        #     # data for plotting
+        #     plot_x.append(episode)
+        #     plot_y.append(score)
+        #     plot_y_loss.append(np.mean(loss_list))
+        #     plot_y_maxQ.append(np.mean(maxQ_list))
 
         score = 0
         loss_list = []
